@@ -778,6 +778,15 @@ namespace cryptonote
     newtxs.reserve(arg.txs.size());
     for (size_t i = 0; i < arg.txs.size(); ++i)
     {
+
+      // Clustering: parse tx to display IP and hash in one log line
+      crypto::hash tx_hash = crypto::null_hash;
+      crypto::hash tx_prefixt_hash = crypto::null_hash;
+      cryptonote::transaction tx;
+      m_core.parse_tx_from_blob(tx, tx_hash, tx_prefixt_hash, arg.txs[i]);
+      MLOG_P2P_MESSAGE("Clustering: new tx: " << tx_hash);
+      // continue as previously
+
       cryptonote::tx_verification_context tvc = AUTO_VAL_INIT(tvc);
       m_core.handle_incoming_tx(arg.txs[i], tvc, false, true, false);
       if(tvc.m_verifivation_failed)

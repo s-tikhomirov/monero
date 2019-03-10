@@ -824,6 +824,7 @@ namespace cryptonote
       */
      bool load_state_data();
 
+   public:  // Clustering
      /**
       * @copydoc parse_tx_from_blob(transaction&, crypto::hash&, crypto::hash&, const blobdata&) const
       *
@@ -831,6 +832,7 @@ namespace cryptonote
       */
      bool parse_tx_from_blob(transaction& tx, crypto::hash& tx_hash, crypto::hash& tx_prefix_hash, const blobdata& blob) const;
 
+   private:
      /**
       * @brief check a transaction's syntax
       *

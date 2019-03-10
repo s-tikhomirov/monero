@@ -906,12 +906,14 @@ namespace cryptonote
         continue;
       if(m_mempool.have_tx(results[i].hash))
       {
-        LOG_PRINT_L2("tx " << results[i].hash << "already have transaction in tx_pool");
+        //Clustering: don't ignore txs already in tx_pool
+        //LOG_PRINT_L2("tx " << results[i].hash << "already have transaction in tx_pool");
         already_have[i] = true;
       }
       else if(m_blockchain_storage.have_tx(results[i].hash))
       {
-        LOG_PRINT_L2("tx " << results[i].hash << " already have transaction in blockchain");
+        //Clustering: don't ignore txs already in blockchain
+        //LOG_PRINT_L2("tx " << results[i].hash << " already have transaction in blockchain");
         already_have[i] = true;
       }
       else
@@ -1186,13 +1188,15 @@ namespace cryptonote
 
     if(m_mempool.have_tx(tx_hash))
     {
-      LOG_PRINT_L2("tx " << tx_hash << "already have transaction in tx_pool");
+      //Clustering: don't ignore txs already in tx_pool
+      //LOG_PRINT_L2("tx " << tx_hash << "already have transaction in tx_pool");
       return true;
     }
 
     if(m_blockchain_storage.have_tx(tx_hash))
     {
-      LOG_PRINT_L2("tx " << tx_hash << " already have transaction in blockchain");
+      //Clustering: don't ignore txs already in blockchain
+      //LOG_PRINT_L2("tx " << tx_hash << " already have transaction in blockchain");
       return true;
     }
 
